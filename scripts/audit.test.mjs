@@ -100,6 +100,13 @@ test('rejects changed source hashes and private imports', async () => {
     expected[path] = hash(content)
     await assert.rejects(auditArtifact(root, { expected }), /private content/)
   })
+  await withFixture(async (root, expected) => {
+    const path = sourcePaths[0]
+    const content = `const fakeToken = 'ghp_${'A'.repeat(20)}'\n`
+    await writeFile(join(root, ...path.split('/')), content)
+    expected[path] = hash(content)
+    await assert.rejects(auditArtifact(root, { expected }), /private content/)
+  })
 })
 
 test('rejects symlinks', async t => {
