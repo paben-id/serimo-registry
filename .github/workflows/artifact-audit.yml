@@ -1,0 +1,35 @@
+name: Artifact audit
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  artifact-audit:
+    name: artifact-audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out proposed repository
+        uses: actions/checkout@v4
+        with:
+          path: candidate
+
+      - name: Check out protected base
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: baseline
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run checker tests
+        run: node --test candidate/scripts/audit.test.mjs
+
+      - name: Audit exact candidate and immutable published bytes
+        run: node candidate/scripts/audit.mjs candidate/v1 baseline/v1
