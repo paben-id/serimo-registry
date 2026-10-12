@@ -1,0 +1,42 @@
+.serimo-lower-third {
+  position: absolute;
+  left: 6.25%;
+  display: flex;
+  align-items: stretch;
+  max-width: 87.5%;
+  color: #fff;
+  background: #202d4c;
+  box-shadow: 0 12px 28px rgb(0 0 0 / 22%);
+  font-family: Arial, sans-serif;
+}
+
+.serimo-lower-third--bottom {
+  bottom: 8.9%;
+}
+
+.serimo-lower-third--top {
+  top: 8.9%;
+}
+
+.serimo-lower-third__accent {
+  flex: 0 0 5px;
+  background: #58d2f7;
+}
+
+.serimo-lower-third__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  padding: 15px 22px;
+}
+
+.serimo-lower-third__copy strong {
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.serimo-lower-third__copy > span {
+  font-size: 15px;
+  line-height: 1.2;
+}

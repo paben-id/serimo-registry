@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "namespace": "serimo",
+  "items": [
+    {
+      "name": "lower-third-slide",
+      "latest": "0.1.1",
+      "versions": [
+        "0.1.1"
+      ],
+      "manifest": "items/serimo/lower-third-slide/{version}/manifest.json"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "name": "@serimo/lower-third-slide",
+  "version": "0.1.1",
+  "type": "component",
+  "title": "Lower Third Slide",
+  "description": "Editable, frame-seekable React and GSAP lower third",
+  "category": "lower-third",
+  "engine": "gsap",
+  "capabilities": ["alpha", "16:9", "9:16"],
+  "license": "MIT",
+  "files": [
+    {
+      "path": "lower-third-slide.tsx",
+      "target": "components/motion/lower-third-slide.tsx",
+      "url": "./files/lower-third-slide.tsx",
+      "sha256": "cf67680ce46c9a742667bbfbad0cb539ff524f693d45b4270b4ba9e0e4ec4b1c"
+    },
+    {
+      "path": "lower-third-slide.css",
+      "target": "components/motion/lower-third-slide.css",
+      "url": "./files/lower-third-slide.css",
+      "sha256": "7fd88d77f69e55d38df6e2d993481dc5709de837a5be91bd02a92ea9a0e1b2e1"
+    },
+    {
+      "path": "lower-third-slide.license.json",
+      "target": "components/motion/lower-third-slide.license.json",
+      "url": "./files/lower-third-slide.license.json",
+      "sha256": "aad5fe99c5c2f9d307414442738b853516ec29c717fc21f0c8b454002992074b"
+    }
+  ],
+  "dependencies": {
+    "react": "19.3.0",
+    "gsap": "3.15.0"
+  },
+  "registryDependencies": []
+}
