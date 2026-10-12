@@ -1,0 +1,62 @@
+name: Deploy reviewed registry to Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: serimo-registry-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out reviewed deployment controls
+        uses: actions/checkout@v4
+        with:
+          path: control
+          persist-credentials: false
+
+      - name: Check out exact approved source commit
+        uses: actions/checkout@v4
+        with:
+          ref: a9b4d386745842759ec51d195f20d648966bbe46
+          path: source
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Test Pages staging
+        run: node --test control/scripts/stage-pages.test.mjs
+
+      - name: Recheck source from approved commit
+        run: node source/scripts/audit.mjs source/v1
+
+      - name: Stage exact Pages artifact
+        run: node control/scripts/stage-pages.mjs source/v1 site
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
