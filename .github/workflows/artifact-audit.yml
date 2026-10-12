@@ -26,10 +26,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: "22"
 
       - name: Run checker tests
-        run: node --test candidate/scripts/audit.test.mjs
+        run: node --test candidate/scripts/audit.test.mjs candidate/scripts/stage-pages.test.mjs
 
       - name: Audit exact candidate and immutable published bytes
         run: node candidate/scripts/audit.mjs candidate/v1 baseline/v1
